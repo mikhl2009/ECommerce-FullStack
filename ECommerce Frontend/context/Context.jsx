@@ -137,6 +137,7 @@ export default function Context({ children }) {
     removeFromCompareItem,
     compareItem,
     setCompareItem,
+    products,
   };
   return (
     <dataContext.Provider value={contextElement}>
