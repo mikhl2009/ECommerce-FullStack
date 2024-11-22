@@ -603,7 +603,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
   info: {
     singularName: 'product';
     pluralName: 'products';
-    displayName: 'Products';
+    displayName: 'Product';
     description: '';
   };
   options: {
@@ -612,12 +612,18 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
   attributes: {
     Name: Schema.Attribute.String & Schema.Attribute.Required;
     Description: Schema.Attribute.Text & Schema.Attribute.Required;
-    Image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    imgSrc: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     slug: Schema.Attribute.UID & Schema.Attribute.Required;
     categories: Schema.Attribute.Relation<
       'manyToMany',
       'api::category.category'
     >;
+    imgHoverSrc: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    price: Schema.Attribute.Decimal;
+    sizes: Schema.Attribute.Enumeration<['x1 St', 'x3 St', 'x5 St', 'x10 St']>;
+    brand: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
