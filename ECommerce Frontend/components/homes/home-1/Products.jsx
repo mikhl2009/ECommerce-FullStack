@@ -1,32 +1,41 @@
 "use client";
-import { products1 } from "@/data/products";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ProductCard } from "../../shopCards/ProductCard";
+import { fetchProductsFromStrapi } from "@/utils/api"; // Adjust the path as necessary
 
 export default function Products() {
-  const [loading, setLoading] = useState(false);
-  const [loaded, setLoaded] = useState(false);
-  const [allproducts, setAllproducts] = useState([...products1]);
-  const handleLoad = () => {
-    setLoading(true);
+  const [loading, setLoading] = useState(true);
+  const [loaded, setLoaded] = useState(false); // This will manage the "Load more" button
+  const [allProducts, setAllProducts] = useState([]);
 
-    setTimeout(() => {
-      setAllproducts((pre) => [...pre, ...products1.slice(0, 12)]);
+  useEffect(() => {
+    const getProducts = async () => {
+      const products = await fetchProductsFromStrapi();
+      setAllProducts(products);
       setLoading(false);
-      setLoaded(true);
-    }, 1000);
+    };
+    getProducts();
+  }, []);
+
+  const handleLoad = () => {
+    // Implement load more functionality if your API supports pagination
+    // For now, we'll just set loaded to true to hide the button
+    setLoaded(true);
   };
+
+  if (loading) {
+    return <div>Loading products...</div>; // You can replace this with a spinner or skeleton
+  }
 
   return (
     <section className="flat-spacing-5 pt_0 flat-seller">
       <div className="container">
         <div className="flat-title">
           <span className="title wow fadeInUp" data-wow-delay="0s">
-            Best Seller
+            Products
           </span>
           <p className="sub-title wow fadeInUp" data-wow-delay="0s">
-            Shop the Latest Styles: Stay ahead of the curve with our newest
-            arrivals
+            Shop the Latest Products
           </p>
         </div>
         <div
@@ -34,8 +43,8 @@ export default function Products() {
           data-wow-delay="0s"
           data-grid="grid-4"
         >
-          {allproducts.map((product, i) => (
-            <ProductCard product={product} key={i} />
+          {allProducts.map((product, i) => (
+            <ProductCard product={product} key={product.id} />
           ))}
         </div>
         {!loaded && (

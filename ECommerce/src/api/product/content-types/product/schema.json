@@ -12,7 +12,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Name": {
+    "title": {
       "type": "string",
       "required": true
     },
@@ -54,15 +54,6 @@
     },
     "price": {
       "type": "decimal"
-    },
-    "sizes": {
-      "type": "enumeration",
-      "enum": [
-        "x1 St",
-        "x3 St",
-        "x5 St",
-        "x10 St"
-      ]
     },
     "brand": {
       "type": "string"

@@ -52,7 +52,7 @@ export default function Context({ children }) {
       };
       setCartProducts((pre) => [...pre, item]);
       openCartModal();
-
+      console.log(products); //REMOVE
       // openCart();
     }
   };

@@ -21,7 +21,7 @@ export const ProductCard = ({ product }) => {
   return (
     <div className="card-product fl-item" key={product.id}>
       <div className="card-product-wrapper">
-        <Link href={`/product-detail/${product.id}`} className="product-img">
+        <Link href={`/product-detail/${product.slug}`} className="product-img">
           <Image
             className="lazyload img-product"
             data-src={product.imgSrc}
@@ -113,7 +113,7 @@ export const ProductCard = ({ product }) => {
         )}
       </div>
       <div className="card-product-info">
-        <Link href={`/product-detail/${product.id}`} className="title link">
+        <Link href={`/product-detail/${product.slug}`} className="title link">
           {product.title}
         </Link>
         <span className="price">${product.price.toFixed(2)}</span>

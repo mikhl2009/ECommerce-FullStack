@@ -610,7 +610,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    Name: Schema.Attribute.String & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
     Description: Schema.Attribute.Text & Schema.Attribute.Required;
     imgSrc: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     slug: Schema.Attribute.UID & Schema.Attribute.Required;
@@ -622,7 +622,6 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
       'images' | 'files' | 'videos' | 'audios'
     >;
     price: Schema.Attribute.Decimal;
-    sizes: Schema.Attribute.Enumeration<['x1 St', 'x3 St', 'x5 St', 'x10 St']>;
     brand: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
